@@ -132,7 +132,7 @@ void setup() {
     int count = 0;
     int light_off = 41;
     while (count < 4) {
-        while (checkInput() == false && player_active) {
+        while (checkInput() == false) {
             if (checkInput() == true) {
                 break;
             }
@@ -140,7 +140,7 @@ void setup() {
             delay(500);
         }
         //Does not go on until player releases button
-        while (player_active && checkInput() == true) {
+        while (checkInput() == true) {
             if (checkInput()) {
                 button[0] = readInput(31);
                 button[1] = readInput(32);
@@ -169,7 +169,11 @@ void setup() {
 }
 
 boolean checkInput() {
-
+    if (digitalRead(31) == LOW || digitalRead(32) == LOW || digitalRead(33) == LOW || digitalRead(34) == LOW) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /*
